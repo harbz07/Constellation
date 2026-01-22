@@ -1,0 +1,29 @@
+mindmap
+  root((ICCW Workspace\nMulti-Client / Multi-Tenant))
+    Tenant = Client (Hard Boundary)
+      Identity & policy (RBAC/ABAC, deny-by-default)
+      Data isolation (canonical/memo/vector)
+      Integration isolation (GitHub/Notion per tenant)
+      Allowlists (repos, Notion DBs/pages)
+      Cache partitioning (tenant_id, project_id)
+    Tenant Knowledge Base (Reusable)
+      Contents: approved patterns, voice, reusable decisions
+      Promotion: propose → review → promote
+      Retrieval: tenant-only (never cross-tenant)
+    Domains (Write model)
+      Canonical (human-owned; agents propose)
+      Memo (agent-owned; free write)
+      Drafts (controlled: Notion DB entries, GitHub draft PRs)
+    Coordination Layer
+      Typed events (Proposal/Evidence/Decision/ActionResult)
+      Orchestrator (assign, debate, escalate)
+      Two-phase commit (propose → approve → apply)
+      Approval gates (writes + destructive actions)
+    Integrations
+      GitHub adapter (read + guarded write; draft PRs in same repo)
+      Notion adapter (tenant-wide Drafts DB; promote on approval)
+      Webhooks → event bus
+    Governance & Audit
+      Audit log (immutable)
+      Secrets vault (scoped tokens)
+      Provenance (sources, diffs, tool runs)
